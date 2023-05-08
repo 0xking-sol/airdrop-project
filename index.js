@@ -25,6 +25,7 @@ const airDropSol = async() => {
   try {
       const connection = new Connection(clusterApiUrl('devnet'), 'confirmed')
       const fromAirDropSignature = await connection.requestAirdrop(publicKey, 2 * LAMPORTS_PER_SOL)
+      // seems that .confirmTransaction is deprecated, but I haven't been able to figure out a fix
       await connection.confirmTransaction(fromAirDropSignature)
   } catch(err) {
       console.log(err)
